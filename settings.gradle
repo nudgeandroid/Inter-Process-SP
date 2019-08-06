@@ -1,0 +1,8 @@
+include ':app', ':multi_process_sp'
+gradle.ext {
+    // maven config
+    mavenUrl = "http://maven.dev.qingtui.im:8081/nexus/content/repositories/releases/"
+    mavenDevUrl = "http://maven.dev.qingtui.im:8081/nexus/content/repositories/snapshots/"
+    mavenUserName = "deployment"
+    mavenPwd = "QT2o17"
+}
