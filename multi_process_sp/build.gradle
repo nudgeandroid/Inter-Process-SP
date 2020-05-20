@@ -9,7 +9,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
-        versionName "0.1.4-SNAPSHOT"
+        versionName "0.1.5-SNAPSHOT"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -44,8 +44,8 @@ uploadArchives{
                 packaging = "aar"
             }
 
-            repository(url: gradle.mavenDevUrl) {
-                authentication(userName: gradle.mavenUserName, password: gradle.mavenPwd)
+            repository(url: QT_SNAPSHOT_URL) {
+                authentication(userName: QT_NAME, password: QT_PASSWORD)
             }
         }
     }

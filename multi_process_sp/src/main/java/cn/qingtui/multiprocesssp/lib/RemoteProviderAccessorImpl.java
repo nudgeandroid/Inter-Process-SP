@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -101,7 +102,7 @@ public class RemoteProviderAccessorImpl implements RemoteProviderAccessor {
             }
             cursor.close();
         }
-        return value;
+        return value != null ? value : defaultValue;
     }
 
     private <Value> Value getValue(Class<Value> valueClass, Value defaultValue, String valueStr) {
