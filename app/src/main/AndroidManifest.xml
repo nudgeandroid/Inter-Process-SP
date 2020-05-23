@@ -28,14 +28,14 @@
             </intent-filter>
         </activity>
 
-        <receiver
+<!--        <receiver
                 android:name=".SPBroadcast"
                 android:exported="true"
                 android:process=":core">
             <intent-filter>
                 <action android:name="im.qingtui.android.multi.provider.sp.broadcast"/>
             </intent-filter>
-        </receiver>
+        </receiver>-->
 
         <meta-data
                 android:name="SP_Provider_Author"

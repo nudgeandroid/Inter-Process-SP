@@ -21,21 +21,21 @@ class TestApplication : Application(), SharedPreferences.OnSharedPreferenceChang
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
         var key1 = "testnullstring";
         val value = sharedPreferences.getString(key1, null);
-        Log.i("RemoteSP", "key:$key1,val:$value")
+        Log.i("onSPChanged", "key:$key1,val:$value")
 
         key1 = "testnullset";
         val value1 = sharedPreferences.getStringSet(key1, null);
-        Log.i("RemoteSP", "key:$key1,val:$value1")
+        Log.i("onSPChanged", "key:$key1,val:$value1")
 
         val value2 = sharedPreferences.getStringSet("set", null);
-        Log.i("RemoteSP", "key:set,val:$value2")
+        Log.i("onSPChanged", "key:set,val:$value2")
 
 
         val value3 = sharedPreferences.getLong("time", -100);
-        Log.i("RemoteSP", "key:time,val:$value3")
+        Log.i("onSPChanged", "key:time,val:$value3")
 
         sharedPreferences.edit().putString("pushToken", "{\"huawei\":\"123123123123123123123123123\"}").commit()
-        Log.i("SPBroadcast", sharedPreferences.getString("pushToken", "{}"))
+        Log.i("onSPChanged", sharedPreferences.getString("pushToken", "{}"))
     }
 
     override fun onCreate() {

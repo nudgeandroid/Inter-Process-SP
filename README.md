@@ -10,7 +10,6 @@
 ```gradle
  implementation "im.qingtui.android:multi_process_sp:$latest_version"
 ```
-
 ### 2.获取SharedPreferences并进行操作
 
 kotlin:
