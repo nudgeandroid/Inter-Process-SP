@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 apply plugin: 'maven'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 28
@@ -35,7 +36,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
-uploadArchives{
+uploadArchives {
     repositories {
         mavenDeployer {
             pom.version = "${android.defaultConfig.versionName}"
@@ -54,4 +55,21 @@ uploadArchives{
 }
 repositories {
     mavenCentral()
+}
+
+publish {
+    //bintray.com的用户名
+    userOrg = 'nudgeAndroid'
+    //一般写包名
+    groupId = 'im.qingtui.android'
+    //指定仓库名称
+    repo = "maven"
+    //项目名称
+    artifactId = 'inter_process_sp'
+    //版本号
+    publishVersion = '0.0.1-SNATSHOP'
+    //项目描述
+    desc = 'Used for multi-process simultaneous operation of SharedPreferences'
+    //项目网址
+    website = 'https://gitee.com/qingtech/Inter-Process-SP'
 }
