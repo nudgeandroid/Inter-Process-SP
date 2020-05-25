@@ -3,9 +3,15 @@
 ## 使用方式
 
 ### 1.添加依赖
-目前仅通过轻推私有maven仓库提供
-
-添加轻推私有仓库后，在项目依赖中增加：
+目前仅通过私有maven仓库提供
+```
+repositories {
+    maven {
+        url "https://dl.bintray.com/nudgeandroid/maven"
+    }
+}
+```
+添加私有仓库后，在项目依赖中增加：
 
 ```gradle
  implementation "im.qingtui.android:multi_process_sp:$latest_version"
@@ -43,4 +49,4 @@ java:
 ```
 
 ## 设计原理
-
+通过contentProvider实现跨进程数据访问，并通过广播实现数据更新后跨进程回调。
