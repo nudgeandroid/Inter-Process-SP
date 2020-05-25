@@ -3,5 +3,12 @@
 
     <application>
 
+        <meta-data
+            android:name="SP_Provider_Author"
+            android:value="${applicationId}.multi.provider.sp"/>
+        <provider
+            android:name="im.qingtui.multiprocesssp.lib.SharedPreferencesProvider"
+            android:authorities="${applicationId}.multi.provider.sp"
+            android:exported="false"/>
     </application>
 </manifest>

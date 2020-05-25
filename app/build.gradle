@@ -35,6 +35,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-//    implementation project(path: ':inter_process_sp')
-    implementation 'im.qingtui.android:inter_process_sp:0.1.8'
+    implementation project(path: ':inter_process_sp')
+//    implementation 'im.qingtui.android:inter_process_sp:0.1.8'
 }
