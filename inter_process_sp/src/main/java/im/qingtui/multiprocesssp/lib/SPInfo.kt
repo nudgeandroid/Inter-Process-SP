@@ -3,7 +3,7 @@ package im.qingtui.multiprocesssp.lib
 import android.content.SharedPreferences
 
 /**
- * 描述Description
+ * SharedPreferences信息
  * Date:2020/5/20
  * @author KongMing
  */

@@ -1,5 +1,6 @@
 # 支持多进程同步读写SharedPreferences的工具库
 
+
 ## 使用方式
 
 ### 1.添加依赖
@@ -14,7 +15,7 @@
 
 kotlin:
 ```kotlin
-val sp = RemoteSP.createMainProcessSP(this, "test", Context.MODE_PRIVATE)
+val sp = RemoteSP.getIPSharedPreferences(this, "test", Context.MODE_PRIVATE)
 sp.edit()
     .putLong("time", System.currentTimeMillis())
     .commit()
@@ -33,16 +34,17 @@ sp.edit()
     .putInt("testint", System.currentTimeMillis().toInt())
     .putFloat("testfloat", System.currentTimeMillis().toFloat())
     .commit()
+
+//注册回调，可在监听其他进程对数据的修改
+sharedPreferences.registerOnSharedPreferenceChangeListener(this)
+
 ```
 
 java:
 ```
-    SharedPreferences sp = RemoteSP.createMainProcessSP(context, "test", Context.MODE_MULTI_PROCESS);
+    SharedPreferences sp = RemoteSP.getIPSharedPreferences(context, "test", Context.MODE_MULTI_PROCESS);
     sp.edit().putString("pushToken", "{\"huawei\":\"123123123123123123123123123\"}").commit();
 ```
 
 ## 设计原理
-
-```
-./gradlew clean build bintrayUpload -PbintrayUser=BINTRAY_USERNAME -PbintrayKey=BINTRAY_KEY -PdryRun=false
-```
+通过contentProvider将数据读写放到主进程统一操作，通过广播将改变回调给其他进程。

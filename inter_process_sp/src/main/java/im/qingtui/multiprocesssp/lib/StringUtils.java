@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -16,7 +17,7 @@ import java.util.Set;
  *
  * @author KongMing
  */
-public class StringUtils {
+class StringUtils {
     public static String fromSet(Set<String> values) {
         if (values == null) return null;
         JSONArray jsonArray = new JSONArray();

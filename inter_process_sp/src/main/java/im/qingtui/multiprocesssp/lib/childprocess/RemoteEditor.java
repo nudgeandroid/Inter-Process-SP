@@ -8,15 +8,15 @@ import im.qingtui.multiprocesssp.lib.RemoteProviderAccessor;
 import java.util.Set;
 
 /**
- * 描述Description
+ * 远程编辑器，用于编辑主进程SP
  * Date:2019-05-30
  *
  * @author KongMing
  */
-public class RemoteEditor implements SharedPreferences.Editor {
+class RemoteEditor implements SharedPreferences.Editor {
     RemoteProviderAccessor providerAccessor;
 
-    public RemoteEditor(RemoteProviderAccessor providerAccessor) {
+    RemoteEditor(RemoteProviderAccessor providerAccessor) {
         this.providerAccessor = providerAccessor;
     }
 
