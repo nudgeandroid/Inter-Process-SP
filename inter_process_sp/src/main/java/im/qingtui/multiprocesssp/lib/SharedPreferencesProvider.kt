@@ -5,6 +5,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.database.Cursor
 import android.database.MatrixCursor
 import android.net.Uri
+import android.support.annotation.Keep
 import java.util.*
 
 /**
@@ -13,6 +14,7 @@ import java.util.*
  *
  * @author KongMing
  */
+@Keep
 class SharedPreferencesProvider : ContentProvider(),
     OnSharedPreferenceChangeListener {
     var spInfoSet: MutableSet<SPInfo> = HashSet()

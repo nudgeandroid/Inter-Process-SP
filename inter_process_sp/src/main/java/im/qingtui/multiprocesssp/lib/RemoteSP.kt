@@ -4,6 +4,7 @@ import android.app.ActivityManager
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Process
+import android.support.annotation.Keep
 import android.text.TextUtils
 import im.qingtui.multiprocesssp.lib.childprocess.RemoteSharedPreferences
 import java.util.*
@@ -14,6 +15,7 @@ import java.util.*
  *
  * @author KongMing
  */
+@Keep
 object RemoteSP {
     var sharedPreferencesWeakHashMap =
         WeakHashMap<String, SharedPreferences>()
