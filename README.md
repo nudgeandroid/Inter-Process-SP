@@ -14,7 +14,7 @@ repositories {
 添加私有仓库后，在项目依赖中增加：
 
 ```gradle
- implementation "im.qingtui.android:multi_process_sp:$latest_version"
+ implementation "im.qingtui.android:multi_process_sp:0.1.9"
 ```
 
 ### 2.获取SharedPreferences并进行操作
