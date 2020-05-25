@@ -83,7 +83,7 @@ bintray {
         version {
             name = VERSION
         }
-        vcsUrl = 'https://gitee.com/qingtech/Inter-Process-SP'
+        vcsUrl = 'https://github.com/nudgeandroid/Inter-Process-SP'
     }
 }
 publishing {
