@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="cn.qingtui.multiprocesssp">
+          package="im.qingtui.multiprocesssp">
 
     <application
-            android:name=".TestApplication"
+            android:name="im.qingtui.multiprocesssp.TestApplication"
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
@@ -11,16 +11,16 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <service
-                android:name=".MyIntentService"
+                android:name="im.qingtui.multiprocesssp.MyIntentService"
                 android:process=":core"
                 android:exported="true">
         </service>
 
         <activity
-                android:name=".Main2Activity"
+                android:name="im.qingtui.multiprocesssp.Main2Activity"
                 android:process=":core">
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name="im.qingtui.multiprocesssp.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -41,7 +41,7 @@
                 android:name="SP_Provider_Author"
                 android:value="im.qingtui.android.multi.provider.sp"/>
         <provider
-                android:name=".lib.SharedPreferencesProvider"
+                android:name="im.qingtui.multiprocesssp.lib.SharedPreferencesProvider"
                 android:authorities="im.qingtui.android.multi.provider.sp"
                 android:exported="false"/>
     </application>
