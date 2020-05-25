@@ -1,1 +1,1 @@
-include ':app', ':multi_process_sp'
+include ':app', ':inter_process_sp'

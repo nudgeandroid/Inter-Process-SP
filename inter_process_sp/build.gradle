@@ -1,0 +1,134 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+apply plugin: 'maven'
+//apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "0.1.7"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            packagingOptions {
+                exclude 'META-INF/inter_process_sp_release.kotlin_module'
+            }
+        }
+    }
+
+}
+android {
+    packagingOptions {
+        exclude 'META-INF/inter_process_sp_release.kotlin_module'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.version = "${android.defaultConfig.versionName}"
+            pom.artifactId = "$project.name"
+            pom.groupId = "im.qingtui.android"
+            pom.project {
+                name = "$project.name"
+                packaging = "aar"
+            }
+
+            repository(url: QT_SNAPSHOT_URL) {
+                authentication(userName: QT_NAME, password: QT_PASSWORD)
+            }
+        }
+    }
+}
+repositories {
+    mavenCentral()
+}
+def VERSION = "${android.defaultConfig.versionName}"
+def ARTIFACT_ID = project.getName()
+bintray {
+    user = QT_BINTRAY_USERNAME
+    key = QT_BINTRAY_KEY
+    publications = ['maven'] // 'maven'与下面的publishing闭包里的名称对应
+    publish = true // 上传后立即发布到Bintray平台
+    pkg {
+        repo = 'maven'
+        name = ARTIFACT_ID
+        userOrg = 'nudgeandroid'
+        licenses = ['Apache-2.0']
+        version {
+            name = VERSION
+        }
+        vcsUrl = 'https://gitee.com/qingtech/Inter-Process-SP'
+    }
+}
+publishing {
+    publications {
+        maven(MavenPublication) {
+            //指定group/artifact/version信息，可以不填。默认使用项目group/name/version作为groupId/artifactId/version
+            groupId QT_ANDROID_ID
+            artifactId ARTIFACT_ID
+            version VERSION
+            // Tell maven to prepare the generated "*.jar" file for publishing
+            artifact("$buildDir/outputs/aar/${ARTIFACT_ID}-release.aar")
+            pom.withXml {
+                def dependenciesNode = asNode().appendNode('dependencies')
+                // Iterate over the implementation dependencies (we don't want the test ones), adding a <dependency> node for each
+                configurations.implementation.allDependencies.each {
+                    // Ensure dependencies such as fileTree are not included in the pom.
+                    if (it.name != 'unspecified') {
+                        def dependencyNode = dependenciesNode.appendNode('dependency')
+                        dependencyNode.appendNode('groupId', it.group)
+                        dependencyNode.appendNode('artifactId', it.name)
+                        dependencyNode.appendNode('version', it.version)
+                    }
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            //指定要上传的maven私服仓库
+            url = VERSION.contains("SNAPSHOT") ? QT_SNAPSHOT_URL : QT_RELEASE_URL
+            //认证用户和密码
+            credentials {
+                username QT_NAME
+                password QT_PASSWORD
+            }
+        }
+    }
+}
+
+// 生成sourceJar和javaDocJar构件
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+artifacts {
+    archives sourcesJar
+}

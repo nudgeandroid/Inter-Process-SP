@@ -3,12 +3,12 @@
 ## 使用方式
 
 ### 1.添加依赖
-目前仅通过轻推私有maven仓库提供
 
-添加轻推私有仓库后，在项目依赖中增加：
+目前通过jcenter仓库提供
 
+在项目依赖中增加：
 ```gradle
- implementation "im.qingtui.android:multi_process_sp:$latest_version"
+ implementation "im.qingtui.android:inter_process_sp:$latest_version"
 ```
 ### 2.获取SharedPreferences并进行操作
 
@@ -43,3 +43,6 @@ java:
 
 ## 设计原理
 
+```
+./gradlew clean build bintrayUpload -PbintrayUser=BINTRAY_USERNAME -PbintrayKey=BINTRAY_KEY -PdryRun=false
+```
